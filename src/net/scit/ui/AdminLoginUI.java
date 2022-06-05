@@ -8,12 +8,11 @@ import net.scit.dao.ManagerDAO;
 import net.scit.vo.Manager;
 import net.scit.vo.Member;
 
-public class ManagerLoginUI {
+public class AdminLoginUI {
 	ExerciseListUI managingExercise = new ExerciseListUI();
 	ExerciseProgramUI managingProgram = new ExerciseProgramUI();
 	MemberDAO memberDao = new MemberDAO();
 	ManagerDAO managerDao = new ManagerDAO();
-	LoginUI loginUI = new LoginUI();
 	Scanner sc = new Scanner(System.in);
 
 	public void managerManagementStart() {

@@ -111,6 +111,7 @@ public class Member {
 				+ ", phone=" + phone + ", gender=" + gender + ", birth=" + birth + ", joindate=" + joindate + "]";
 	}
 	
-	
-	
+	public boolean isMatched(String password) {
+		return this.memberPw.equals(password);
+	}
 }

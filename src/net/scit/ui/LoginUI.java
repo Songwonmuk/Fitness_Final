@@ -6,8 +6,8 @@ import java.util.Scanner;
 //로그인 
 public class LoginUI {
 
-	private ManagerLoginUI managerUI = new ManagerLoginUI();
-	private SpecificMemberUI specificUI = new SpecificMemberUI();
+	private AdminLoginUI managerUI = new AdminLoginUI();
+	private MemberLoginUI specificUI = new MemberLoginUI();
 	private Scanner scanner = new Scanner(System.in);
 
 	public void programStart() {
@@ -24,7 +24,7 @@ public class LoginUI {
 				managerUI.managerManagementStart();
 				break;
 			case "2":
-				specificUI.specificMember();
+				specificUI.login();
 				break;
 			case "0":
 				System.out.println("프로그램을 종료합니다");
