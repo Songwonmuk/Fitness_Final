@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<properties resource="db.properties" />
+
+	<typeAliases>
+		<typeAlias type="net.scit.vo.Program" alias="Program" />
+		<typeAlias type="net.scit.vo.Exercise" alias="Exercise" />
+		<typeAlias type="net.scit.vo.Manager" alias="Manager" />
+		<typeAlias type="net.scit.vo.Memeber" alias="Member" />
+		<typeAlias type="net.scit.vo.ExerType" alias="ExerType" />
+		<typeAlias type="net.scit.vo.BodyProfile" alias="BodyProfile" />
+	</typeAliases>
+
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="programMapper.xml" />
+		<mapper resource="exerciseMapper.xml" />
+		<mapper resource="memberMapper.xml" />
+		<mapper resource="managerMapper.xml" />
+		<mapper resource="exerTypeMapper.xml" />
+		<mapper resource="bodyProfileMapper.xml" />
+	</mappers>
+</configuration>

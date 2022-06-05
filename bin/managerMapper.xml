@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="net.scit.dao.ManagerMapper">
+  
+  <!-- 매니저 신규 가입 -->
+  <insert id="join" parameterType="Manager">
+  INSERT INTO manager
+  (managerName, jobPeriod, improvement, influenceLevel)
+  VALUES
+  (#{managerName}, #{jobPeriod}, #{improvement}, #{influenceLevel})	
+  </insert>
+  
+  <!-- 전체 조회 -->
+  <select id="findAll" resultType="Manager">
+  SELECT
+  	managerId,
+  	managerName,
+  	jobPeriod,
+  	influenceLevel
+  FROM
+  	manager
+  ORDER BY
+  	managerId
+  </select>
+  
+  <!-- 매니저 정보 삭제 -->
+  <delete id="delete" parameterType="int">
+  DELETE
+  	manager
+  WHERE
+  	managerId = #{managerId}	
+  </delete>
+  
+  <!-- 매니저 정보 수정 -->
+  <update id="update" parameterType="Manager">
+  UPDATE
+  	manager
+  SET
+  	jobPeriod = #{jobPeriod}
+  WHERE
+  	managerId = #{managerId}		
+  </update>
+  
+  <!-- 인원수 확인 -->
+  <select id="getCount" resultType="int">
+  SELECT
+  	count(*)
+  FROM
+  	manager
+  </select>
+  
+  <!-- 매니저 아이디로 조회 -->
+  <select id="findById" parameterType="int" resultType="Manager">
+  SELECT
+  	managerId,
+  	managerName,
+  	jobPeriod,
+  	influenceLevel
+  FROM
+  	manager
+  WHERE
+  	managerId = #{managerId}		
+  </select>
+  
+  <!-- 모든 influenceLevel 검색 -->
+  <select id="selectAllInfluenceLevel" resultType="Manager">
+  SELECT
+  	influenceLevel
+  FROM
+	manager
+ 	
+  </select>
+  
+  <!-- influenceLevel 별로 검색 -->
+  <select id="findByLevel" parameterType="int" resultType="Manager">
+  SELECT
+  	managerId, managerName, influenceLevel
+  FROM
+  	manager
+  WHERE
+  	influenceLevel = #{influenceLevel}
+  </select>
+  </mapper>

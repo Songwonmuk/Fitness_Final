@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace : 인터페이스의 풀네임 id : 인터페이스의 메소드명 parameterType : 파라미터로 전달받는 VO 
+	클래스의 풀네임 resultType : 제네릭으로 표기된 VO 클래스의 풀네임 컬럼명과 멤버변수명이 같아야 조회된 데이터가 변수에 
+	들어간다. 14행 #은 get의 의미 -->
+<mapper namespace="net.scit.dao.BodyProfileMapper">
+
+	<!-- 바디 프로필 등록 ()-->
+	<insert id="register" parameterType="BodyProfile">
+	INSERT INTO bodyProfile
+		(profileNum, weight, height)
+	VALUES
+		(#{profileNum}, #{weight}, #{height})
+			
+	</insert>
+	
+	<!-- 전체 바디 프로필 조회 ()-->
+	<select id="findAll" resultType="BodyProfile">
+	SELECT
+		profileNum
+		smm,
+		smmResult,
+		bmi,
+		bmiResult,
+		balance,
+		balanceResult,
+		stress,
+		stressResult
+	FROM
+		bodyProfile
+	WHERE	
+		memberId = #{memberId}		
+	</select>
+	
+	<!-- 바디 프로필 삭제 -->
+	<delete id="delete" parameterType="int">
+	DELETE
+		bodyProfile
+	WHERE
+		memberId = #{memberId}
+	</delete>
+	
+	<!-- 바디 프로필 수정 -->
+	<update id="update" parameterType="string">
+	UPDATE
+		bodyProfile
+	SET
+		weight = #{weight}
+		height = #{height}		
+	</update>
+		
+	<!-- 등록된 바디프로필 수 확인 -->
+	<select id="getCount" parameterType="Exercise">
+	
+	</select>
+	
+	<!-- 회원 아이디로 조회 -->
+	<delete id="findById" parameterType="int">
+	
+	</delete>
+	
+</mapper>

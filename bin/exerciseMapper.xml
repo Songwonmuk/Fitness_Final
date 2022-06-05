@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace : 인터페이스의 풀네임 id : 인터페이스의 메소드명 parameterType : 파라미터로 전달받는 VO 
+	클래스의 풀네임 resultType : 제네릭으로 표기된 VO 클래스의 풀네임 컬럼명과 멤버변수명이 같아야 조회된 데이터가 변수에 
+	들어간다. 14행 #은 get의 의미 -->
+<mapper namespace="net.scit.dao.ExerciseMapper">
+	<select id="ExerciseList" resultType="Exercise">
+		select *from Exercise
+		order by exerNum
+	</select>
+	<select id="totalExercises" resultType="integer">
+		select count(*)
+		from Exercise
+	</select>
+	<insert id="addExercise" parameterType="Exercise">
+		INSERT INTO Exercise
+		(exerNum, exerName, exerType, exerTime, consumedCalory, gainedMuscle, getBalance, lowerStress)
+		VALUES
+		(Exercise_ExerNum_SEQ.nextval, #{exerName} , #{exerType}, #{exerTime}, #{consumedCalory}, #{gainedMuscle}, #{getBalance}, #{lowerStress})
+	</insert>
+	<select id="findByName" parameterType="string" resultType="Exercise">
+		select*from Exercise
+		where exerName = #{exerName}
+	</select>
+	<update id="updateExercise" parameterType="Exercise">
+		update Exercise
+		set exerName = #{exerName}, exerType = #{exerType}, exerTime = #{exerTime}, consumedCalory = #{consumedCalory},
+		gainedMuscle = #{gainedMuscle}, getBalance = #{getBalance}, lowerStress = #{lowerStress}
+		where exerNum = #{exerNum}
+	</update>
+	<delete id="deleteExercise" parameterType="Exercise">
+		delete from Exercise
+		where exerNum = #{exerNum}
+	</delete>
+	<update id="updateProgramID" parameterType="Exercise">
+		update Exercise
+		set programID = #{programID}
+		where exerName = #{exerName}
+	</update>
+	<select id="findByProgramID" parameterType="integer" resultType="Exercise">
+		select*from Exercise
+		where programID = #{programID}
+	</select>
+	<update id="whenDeleteIdUpdate" parameterType="Exercise">
+		update Exercise
+		set programID = null
+		where exerNum = #{exerNum}
+	</update>
+</mapper>
+<!-- public int insertUser(User user); public List<User> selectUser(); insert 
+	update delete 는 resultType을 쓰면 오류 -->

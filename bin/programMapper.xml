@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace : 인터페이스의 풀네임 id : 인터페이스의 메소드명 parameterType : 파라미터로 전달받는 VO 
+	클래스의 풀네임 resultType : 제네릭으로 표기된 VO 클래스의 풀네임 컬럼명과 멤버변수명이 같아야 조회된 데이터가 변수에 
+	들어간다. 14행 #은 get의 의미 -->
+<mapper namespace="net.scit.dao.ProgramMapper">
+	<select id="programList" resultType="Program">
+		select *from Exercise
+		order by programID
+	</select>
+	
+	<select id="totalPrograms" resultType="integer">
+		select count(*)
+		from Program
+	</select>
+		
+	<insert id="addProgram" parameterType="Program">
+		INSERT INTO Program
+		(programID, programName, programInfo, totalCalory, totalMuscle, totalBalance, totalStress)
+		VALUES
+		(Program_ProgramID_SEQ.nextval, #{programName}, #{programInfo}, #{totalCalory}, #{totalMuscle}, #{totalBalance}, #{totalStress})
+	</insert>
+	
+	<select id="findByProgramID" parameterType="integer" resultType="Program">
+		select*from Program
+		where programID = #{programID}
+	</select>
+	
+	<delete id="deleteProgram" parameterType="Program">
+		delete from Program
+		where programID = #{programID}
+	</delete>
+	
+	<update id="insertProgram" parameterType="Program">
+		update Program
+		set totalCalory = #{totalCalory}, totalMuscle = #{totalMuscle}, totalBalance = #{totalBalance}, totalStress = #{totalStress}
+		where programName = #{programName}
+	</update>
+	
+	<select id="findByProgramName" parameterType="string" resultType="Program">
+		select *
+		from Program
+		where programName = #{programName}
+	</select>
+	<select id="findByMemberID" parameterType="integer" resultType="Program">
+		select p.totalCalory, p.totalMuscle, p.totalBalance, p.totalStress
+		from Program p, BodyProfile b, Member m
+		where p.programID = b.programID, m.memberID = b.memberID
+	</select>
+</mapper>
+<!-- public int insertUser(User user); public List<User> selectUser(); 
+insert update delete 는 resultType을 쓰면 오류 -->
