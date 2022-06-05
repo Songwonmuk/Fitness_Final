@@ -16,8 +16,13 @@ public class Program {
 		super();
 	}
 
+	public Program(String programName, String programInfo) {
+		this.programName = programName;
+		this.programInfo = programInfo;
+	}
+
 	public Program(int programID, String programName, String programInfo, List<Exercise> exerList, int totalCalory,
-			double totalMuscle, int totalStress, double totalBalance) {
+				   double totalMuscle, int totalStress, double totalBalance) {
 		super();
 		this.programID = programID;
 		this.programName = programName;
